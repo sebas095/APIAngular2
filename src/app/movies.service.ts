@@ -23,6 +23,7 @@ export class MoviesService {
   }
 
   getMovies(keyword: string) : Observable<Response> {
+    console.log(`http://www.omdbapi.com/?s=${keyword}`);
     return (
       this
         .http
