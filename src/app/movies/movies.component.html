@@ -1,3 +1,4 @@
-<p>
-  movies works!
-</p>
+<md-card *ngFor="let movie of movies">
+  <md-card-subtitle>{{movie.id}}</md-card-subtitle>
+  <md-card-title>{{movie.title}}</md-card-title>
+</md-card>
