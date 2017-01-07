@@ -8,11 +8,13 @@ import { AppComponent } from './app.component';
 import { MoviesComponent } from './movies/movies.component';
 
 import { MoviesService } from './movies.service';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MoviesComponent
+    MoviesComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
