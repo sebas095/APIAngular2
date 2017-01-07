@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from './movie';
 
+import { MoviesService } from '../movies.service';
+
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
@@ -9,14 +11,9 @@ import { Movie } from './movie';
 export class MoviesComponent implements OnInit {
   movies: Movie[];
 
-  constructor() { }
+  constructor(private service: MoviesService) {  }
 
   ngOnInit() {
-    this.movies = [
-      {title: 'Toy Story', id: '123'},
-      {title: 'Toy Story 2', id: '124'},
-      {title: 'Toy Story 3', id: '125'}
-    ];
+    this.movies = this.service.movies;
   }
-
 }
