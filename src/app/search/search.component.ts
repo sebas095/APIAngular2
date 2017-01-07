@@ -7,10 +7,15 @@ import { MoviesService } from '../movies.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
+  keyword: string;
 
   constructor(private service: MoviesService) { }
 
   ngOnInit() {
+  }
+
+  search() {
+    this.service.search(this.keyword);
   }
 
 }
