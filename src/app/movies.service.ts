@@ -17,18 +17,28 @@ export class MoviesService {
 
   search(keyword: string) {
     this.getMovies(keyword).subscribe(
-      res => console.log(res.json()),
+      res => this.movies = res,
       err => console.log(err)
     );
   }
 
-  getMovies(keyword: string) : Observable<Response> {
-    console.log(`http://www.omdbapi.com/?s=${keyword}`);
+  getMovies(keyword: string) : Observable<Movie[]> {
     return (
       this
         .http
         .get(`http://www.omdbapi.com/?s=${keyword}`)
+        .map(this.parseResponse)
         .catch(() => Observable.throw('Algo salió mal'))
+    );
+  }
+
+  parseResponse(response: Response) : Movie[] {
+    if (!response.json() || !response.json().Search) return [];
+    return response.json().Search.map(
+      jsonMovie => new Movie(jsonMovie['Title'],
+                        jsonMovie['imdbID'],
+                        jsonMovie['Year'],
+                        jsonMovie['Type'])
     );
   }
 }
